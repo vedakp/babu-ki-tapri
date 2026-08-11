@@ -51,8 +51,14 @@
 }
 
 .newspaper-open {
-  transform: translateX(-240px) scale(2.2) rotateY(180deg);
+  transform: scale(2.6) rotateY(180deg);
   z-index: 50;
+}
+
+@media (min-width: 768px) {
+  .newspaper-open {
+    transform: translateX(-240px) scale(2.2) rotateY(180deg);
+  }
 }
 
 .newspaper-closed {

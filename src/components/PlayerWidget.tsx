@@ -1,5 +1,5 @@
 import { Play, Pause, SkipForward, SkipBack } from 'lucide-react';
-import { PlaylistItem } from '../hooks/useYouTubeData';
+import { PlaylistItem } from '../hooks/useYouTubePlayer';
 
 interface PlayerWidgetProps {
   item: PlaylistItem;
