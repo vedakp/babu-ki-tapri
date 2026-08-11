@@ -1,72 +1,96 @@
 import React, { useState } from 'react';
-import { Coffee, Flame, BookOpen } from 'lucide-react';
+
+const playSound = (type: 'chai' | 'match' | 'news') => {
+  try {
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    
+    if (type === 'chai') {
+      const noize = ctx.createBufferSource();
+      const buffer = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+      noize.buffer = buffer;
+      
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 400; // Low rumble for boiling
+      
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      // Fade in to simulate boiling up, then fade out
+      gain.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.5);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2);
+      
+      noize.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      noize.start();
+    } else if (type === 'match') {
+      const noize = ctx.createBufferSource();
+      const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.2, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+      noize.buffer = buffer;
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'highpass';
+      filter.frequency.value = 5000;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+      noize.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      noize.start();
+    } else if (type === 'news') {
+      const noize = ctx.createBufferSource();
+      const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.1, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+      noize.buffer = buffer;
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 1000;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+      noize.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      noize.start();
+    }
+  } catch (e) {
+    console.error("Audio playback failed", e);
+  }
+};
 
 export function InteractiveTable() {
   const [steamSurge, setSteamSurge] = useState(false);
   const [matchLit, setMatchLit] = useState(false);
   const [newspaperOpen, setNewspaperOpen] = useState(false);
 
-  // Add state for mobile icon effects
-  const [mobileChaiActive, setMobileChaiActive] = useState(false);
-  const [mobileMatchActive, setMobileMatchActive] = useState(false);
-  const [mobileNewsActive, setMobileNewsActive] = useState(false);
-
   const handleChaiClick = () => {
     setSteamSurge(true);
+    playSound('chai');
     setTimeout(() => setSteamSurge(false), 3000);
   };
 
   const handleMatchClick = () => {
     setMatchLit(true);
+    playSound('match');
     setTimeout(() => setMatchLit(false), 2000);
   };
 
   const handleNewspaperClick = () => {
     setNewspaperOpen(!newspaperOpen);
+    playSound('news');
   };
-
-  const handleMobileChaiClick = () => {
-    setMobileChaiActive(true);
-    setTimeout(() => setMobileChaiActive(false), 2000);
-  }
-
-  const handleMobileMatchClick = () => {
-    setMobileMatchActive(true);
-    setTimeout(() => setMobileMatchActive(false), 2000);
-  }
-  
-  const handleMobileNewsClick = () => {
-    setMobileNewsActive(!mobileNewsActive);
-  }
 
   return (
     <>
-    {/* Mobile Icon-based UI */}
-    <div className="md:hidden absolute top-1/2 right-4 -translate-y-1/2 flex flex-col gap-6 bg-black/40 backdrop-blur-xl p-3 rounded-full border border-white/10 z-30 shadow-2xl">
-      <button 
-        onClick={handleMobileChaiClick}
-        className={`p-3 rounded-full transition-all duration-300 ${mobileChaiActive ? 'bg-amber-500/20 text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)]' : 'bg-white/5 text-white/60 hover:bg-white/10'}`}
-      >
-        <Coffee size={20} className={mobileChaiActive ? 'animate-bounce' : ''} />
-      </button>
-      
-      <button 
-        onClick={handleMobileMatchClick}
-        className={`p-3 rounded-full transition-all duration-300 ${mobileMatchActive ? 'bg-red-500/20 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)]' : 'bg-white/5 text-white/60 hover:bg-white/10'}`}
-      >
-        <Flame size={20} className={mobileMatchActive ? 'animate-pulse' : ''} />
-      </button>
-
-      <button 
-        onClick={handleMobileNewsClick}
-        className={`p-3 rounded-full transition-all duration-300 ${mobileNewsActive ? 'bg-blue-500/20 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)]' : 'bg-white/5 text-white/60 hover:bg-white/10'}`}
-      >
-        <BookOpen size={20} />
-      </button>
-    </div>
-
-    {/* Desktop 3D UI */}
-    <div className="hidden md:flex absolute top-1/2 right-12 -translate-y-1/2 flex-col items-center gap-16 z-30 select-none">
+    {/* 3D UI */}
+    <div className="flex absolute top-1/2 right-4 md:right-12 -translate-y-1/2 flex-col items-center gap-10 md:gap-16 z-30 select-none scale-75 md:scale-100 origin-right">
       
       {/* Newspaper */}
       <div 
