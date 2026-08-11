@@ -1,0 +1,6 @@
+{
+  "name": "Vibe Player",
+  "description": "An immersive, atmospheric music player using the YouTube IFrame API and Glassmorphism design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
