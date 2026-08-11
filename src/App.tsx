@@ -27,13 +27,13 @@ export default function App() {
 
       {/* Center Top Hindi Title - Ad/Promotion style */}
       <div className="absolute top-24 md:top-16 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-10 opacity-90 drop-shadow-2xl text-center w-full">
-        <h1 className="font-devanagari mt-5 text-center text-6xl leading-[1.15] text-cream drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)] md:text-8xl md:leading-[1.15]">
+        <div className="text-white/90 text-[10px] md:text-xs tracking-[0.4em] uppercase font-bold px-4 md:px-6 py-1 md:py-1.5 border border-white/30 rounded backdrop-blur-sm bg-black/40 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+          Famous Since 1995
+        </div>
+        <h1 className="font-devanagari mt-3 md:mt-5 text-center text-6xl leading-[1.15] text-cream drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)] md:text-8xl md:leading-[1.15]">
           <span className="block">बाबू की</span>
           <span className="block">टपरी</span>
         </h1>
-        <div className="text-white/90 text-[10px] md:text-xs tracking-[0.4em] uppercase mt-3 md:mt-5 font-bold px-4 md:px-6 py-1 md:py-1.5 border border-white/30 rounded backdrop-blur-sm bg-black/40 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-          Famous Since 1990
-        </div>
       </div>
 
 

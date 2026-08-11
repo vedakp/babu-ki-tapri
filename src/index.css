@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
+@import "tailwindcss";
 
 @theme {
   --font-devanagari: 'Rozha One', 'Rozha One Fallback', serif;
