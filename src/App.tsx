@@ -1,6 +1,7 @@
 import { Clock } from './components/Clock';
 import { PlayerWidget } from './components/PlayerWidget';
 import { InteractiveTable } from './components/InteractiveTable';
+import { LiveSession } from './components/LiveSession';
 import { useYouTubePlayer } from './hooks/useYouTubePlayer';
 import './types';
 
@@ -43,16 +44,9 @@ export default function App() {
       </div>
 
       {/* Top UI Layer */}
-      <header className="absolute top-8 left-10 right-10 flex justify-between items-start z-10">
+      <header className="absolute top-4 sm:top-8 left-4 sm:left-10 right-4 sm:right-10 flex justify-between items-start z-10">
         <Clock />
-        
-        <div className="hidden md:block">
-          <div className="flex items-center gap-3 px-4 py-1.5 bg-white/[0.03] backdrop-blur-[24px] border border-white/[0.08] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] rounded-full">
-            <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-            <div className="text-[10px] font-bold tracking-[0.3em] text-white/80 uppercase">LIVE</div>
-          </div>
-        </div>
-
+        <LiveSession />
       </header>
 
       {/* Bottom UI - Player Widget */}

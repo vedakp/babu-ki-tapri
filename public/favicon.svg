@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="48" fill="#18110a" stroke="#d97706" stroke-width="3" />
+  
+  <!-- Steam Curves -->
+  <path d="M 38 32 Q 34 22 42 14" fill="none" stroke="#fef3c7" stroke-width="3.5" stroke-linecap="round" opacity="0.85">
+    <animate attributeName="d" values="M 38 32 Q 34 22 42 14; M 38 32 Q 42 22 34 14; M 38 32 Q 34 22 42 14" dur="3s" repeatCount="indefinite" />
+  </path>
+  <path d="M 50 34 Q 54 24 46 16" fill="none" stroke="#fef3c7" stroke-width="3.5" stroke-linecap="round" opacity="0.95">
+    <animate attributeName="d" values="M 50 34 Q 54 24 46 16; M 50 34 Q 46 24 54 16; M 50 34 Q 54 24 46 16" dur="2.5s" repeatCount="indefinite" />
+  </path>
+  <path d="M 62 32 Q 58 22 66 14" fill="none" stroke="#fef3c7" stroke-width="3.5" stroke-linecap="round" opacity="0.85">
+    <animate attributeName="d" values="M 62 32 Q 58 22 66 14; M 62 32 Q 66 22 58 14; M 62 32 Q 58 22 66 14" dur="3.2s" repeatCount="indefinite" />
+  </path>
+
+  <!-- Cutting Chai Glass Body -->
+  <!-- Glass rim -->
+  <ellipse cx="50" cy="40" rx="22" ry="6" fill="#f59e0b" stroke="#78350f" stroke-width="1.5" />
+  
+  <!-- Glass Tapered Body -->
+  <path d="M 28 40 L 34 76 Q 50 82 66 76 L 72 40 Z" fill="url(#chaiGradient)" stroke="#92400e" stroke-width="2" />
+
+  <!-- Glass Ridges / Cuts -->
+  <line x1="38" y1="44" x2="42" y2="72" stroke="#ffffff" stroke-width="2" opacity="0.2" />
+  <line x1="50" y1="44" x2="50" y2="75" stroke="#ffffff" stroke-width="2" opacity="0.25" />
+  <line x1="62" y1="44" x2="58" y2="72" stroke="#ffffff" stroke-width="2" opacity="0.2" />
+
+  <!-- Chai Level Fill -->
+  <ellipse cx="50" cy="48" rx="18.5" ry="4.5" fill="#d97706" />
+
+  <defs>
+    <linearGradient id="chaiGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="60%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+  </defs>
+</svg>
